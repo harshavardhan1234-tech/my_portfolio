@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kunduru Harsha Vardhan Reddy | Portfolio</title>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* CSS Variables for Light/Dark Mode */
+        :root {
+            --text-primary: #2d3436;
+            --text-secondary: #636e72;
+            --glass-bg: rgba(255, 255, 255, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.7);
+            --glass-shadow: rgba(31, 38, 135, 0.15);
+            --accent: #6c5ce7;
+            --accent-hover: #a29bfe;
+        }
+
+        [data-theme="dark"] {
+            --text-primary: #dfe6e9;
+            --text-secondary: #b2bec3;
+            --glass-bg: rgba(15, 15, 15, 0.55);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --glass-shadow: rgba(0, 0, 0, 0.4);
+            --accent: #00cec9;
+            --accent-hover: #81ecec;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Animated Gradient Background */
+        body {
+            background: linear-gradient(-45deg, #e0c3fc, #8ec5fc, #fbc2eb, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-primary);
+            transition: color 0.5s ease;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        [data-theme="dark"] body {
+            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #000000);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Reusable Class */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 var(--glass-shadow);
+        }
+
+        /* Typography */
+        h1, h2, h3 { color: var(--text-primary); }
+        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 2.5rem; position: relative; }
+        h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        p { color: var(--text-secondary); margin-bottom: 1rem; }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.4s ease;
+        }
+        header.scrolled {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 4px 20px var(--glass-shadow);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); text-decoration: none; }
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+        .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: color 0.3s; position: relative;}
+        
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0;
+            background-color: var(--accent); transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--accent); }
+        
+        #theme-toggle {
+            background: none; border: none; font-size: 1.2rem; color: var(--text-primary); cursor: pointer; transition: transform 0.3s;
+        }
+        #theme-toggle:hover { transform: rotate(30deg) scale(1.2); color: var(--accent); }
+
+        /* Sections */
+        section {
+            padding: 120px 20px 80px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* --- UPDATED: Animated Anime Profile Picture --- */
+        .profile-container {
+            display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;
+        }
+
+        .profile-blob {
+            width: 260px; height: 260px; margin-bottom: 30px;
+            /* Here is the animated GIF background */
+            background-image: url('https://media.tenor.com/gg15U3XlD3sAAAAd/anime-computer.gif');
+            background-size: cover; background-position: center;
+            border: 5px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            animation: morph 8s ease-in-out infinite, float 6s ease-in-out infinite;
+            transition: all 0.5s ease; position: relative; z-index: 1;
+        }
+
+        .profile-blob:hover { box-shadow: 0 0 40px var(--accent); border-color: var(--accent); transform: scale(1.05); }
+
+        @keyframes morph {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+
+        /* Hero Section Text */
+        #home h1 { font-size: 3.8rem; margin-bottom: 10px; line-height: 1.2; text-align: center;}
+        .typing-container { font-size: 1.8rem; color: var(--accent); font-weight: 600; min-height: 50px; margin-bottom: 20px; text-align: center;}
+        .social-icons { margin-top: 30px; display: flex; gap: 20px; justify-content: center; }
+        .social-icons a { font-size: 1.8rem; color: var(--text-primary); transition: all 0.3s ease; }
+        .social-icons a:hover { color: var(--accent); transform: translateY(-8px) scale(1.1); }
+
+        /* Buttons */
+        .btn {
+            display: inline-block; padding: 14px 32px; background: var(--accent); color: #fff;
+            text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 1rem;
+            transition: all 0.3s ease; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin: 10px;
+        }
+        .btn:hover { background: var(--accent-hover); transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+        .btn-outline { background: transparent; border: 2px solid var(--accent); color: var(--text-primary); }
+        .btn-outline:hover { background: var(--accent); color: #fff; }
+
+        /* About Section Layout */
+        .about-content {
+            display: flex; align-items: center; gap: 40px; text-align: left;
+        }
+        .about-image img {
+            width: 100%; max-width: 300px; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 4px solid var(--glass-border);
+        }
+        .about-text { flex: 1; }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem; width: 100%; margin-top: 2rem;
+        }
+
+        /* Standard Cards */
+        .card { padding: 2.5rem; text-align: left; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        
+        .floating { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .card:hover { transform: translateY(-12px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+        .card h3 { color: var(--accent); margin-bottom: 15px; font-size: 1.5rem; }
+
+        /* Project Cards with Images */
+        .project-card { 
+            padding: 0; overflow: hidden; display: flex; flex-direction: column;
+        }
+        .project-img { width: 100%; height: 220px; overflow: hidden; position: relative; }
+        .project-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .project-card:hover .project-img img { transform: scale(1.15); }
+        .project-img-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7)); pointer-events: none;
+        }
+        .project-content { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column;}
+        .project-content p { flex-grow: 1; }
+
+        /* Skills Tags */
+        .skills-wrapper { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 25px; }
+        .skill-tag {
+            padding: 12px 24px; background: var(--glass-bg); border: 1px solid var(--glass-border);
+            border-radius: 30px; font-weight: 500; font-size: 1.05rem; color: var(--text-primary);
+            box-shadow: 0 4px 15px var(--glass-shadow); transition: all 0.3s ease; cursor: default;
+        }
+        .skill-tag:hover { background: var(--accent); color: #fff; transform: scale(1.1) rotate(2deg); }
+
+        /* Scroll Animation Classes */
+        .hidden { opacity: 0; transform: translateY(60px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .show { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #home h1 { font-size: 2.8rem; }
+            .nav-links { display: none; }
+            section { padding-top: 90px; }
+            .profile-blob { width: 200px; height: 200px; }
+            .about-content { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header id="navbar">
+        <nav>
+            <a href="#home" class="logo">KHVR.</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button id="theme-toggle" aria-label="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="profile-container">
+            <div class="profile-blob hidden delay-1"></div>
+            <h1 class="hidden delay-2">Kunduru Harsha Vardhan Reddy</h1>
+            <div class="typing-container hidden delay-2" id="typing-text"></div>
+            <p class="hidden delay-3" style="max-width: 650px; font-size: 1.2rem; margin-top: 10px; text-align: center;">
+                A passionate Computer Science and Engineering student building responsive, modern, and user-friendly software solutions.
+            </p>
+            <div class="hidden delay-3" style="margin-top: 15px; text-align: center;">
+                <a href="#projects" class="btn">View My Work</a>
+                <a href="#contact" class="btn btn-outline">Contact Me</a>
+            </div>
+            <div class="social-icons hidden delay-3">
+                <a href="https://github.com/harshavardhan1234-tech" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/k-harsha-9a445b2bb" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:harsha7330753850@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="glass card hidden floating" style="max-width: 950px; padding: 3rem;">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <!-- Tech Workspace Image -->
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tech Workspace">
+                </div>
+                <div class="about-text">
+                    <p style="font-size: 1.1rem;">I am a motivated Computer Science and Engineering student with a strong academic record. I am seeking an internship or entry-level software development opportunity where I can apply my programming skills, contribute to real-world projects, and continue learning modern technologies.</p>
+                    <p style="font-size: 1.1rem;">When I'm not coding, you can find me exploring new technologies, browsing technical content to stay ahead of the curve, or working on personal projects.</p>
+                    <!-- UPDATED: Download button links to a live test PDF so it works instantly -->
+                    <!-- <a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank" class="btn" style="margin-top: 15px; margin-left: 0;"><i class="fas fa-download"></i> Download Resume</a> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2>Education</h2>
+        <div class="grid" style="max-width: 800px;">
+            <div class="glass card hidden floating">
+                <div style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"><i class="fas fa-user-graduate"></i></div>
+                <h3>B.Tech - Computer Science and Engineering</h3>
+                <p><strong>Ananta Lakshmi Institute of Technology and Sciences, Anantapur</strong></p>
+                <div style="display: flex; gap: 20px; margin-top: 15px; font-weight: 500;">
+                    <p><i class="far fa-calendar-alt" style="color: var(--accent);"></i> 2024 - 2028</p>
+                    <p><i class="fas fa-star" style="color: #f1c40f;"></i> Score: <strong>93%</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Technical Skills & Strengths</h2>
+        
+        <h3 style="text-align:center; margin-top: 20px; font-size: 1.3rem; font-weight: 600;" class="hidden">Programming & Web Development</h3>
+        <div class="skills-wrapper hidden delay-1">
+            <span class="skill-tag"><i class="fab fa-cuttlefish"></i> C Programming</span>
+            <span class="skill-tag"><i class="fab fa-java"></i> Java</span>
+            <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+            <span class="skill-tag"><i class="fab fa-html5"></i> HTML5</span>
+            <span class="skill-tag"><i class="fab fa-css3-alt"></i> CSS3</span>
+            <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
+        </div>
+
+        <h3 style="text-align:center; margin-top: 50px; font-size: 1.3rem; font-weight: 600;" class="hidden">Core Strengths</h3>
+        <div class="skills-wrapper hidden delay-2">
+            <span class="skill-tag"><i class="fas fa-brain"></i> Problem Solving</span>
+            <span class="skill-tag"><i class="fas fa-bolt"></i> Quick Learner</span>
+            <span class="skill-tag"><i class="fas fa-users"></i> Team Collaboration</span>
+            <span class="skill-tag"><i class="fas fa-comments"></i> Communication Skills</span>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="grid">
+            
+            <div class="glass card project-card hidden delay-1">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Online Voting System">
+                    <div class="project-img-overlay"></div>
+                </div>
+                <div class="project-content">
+                    <h3>Online Voting System</h3>
+                    <p>A secure online platform for voting. Implemented robust user authentication, real-time vote management, and a clean, accessible interface.</p>
+                    <div style="margin-top: 15px; margin-bottom: 20px; font-size: 0.9rem; color: var(--accent); font-weight: 500;">
+                        <span>#HTML</span> • <span>#CSS</span> • <span>#JS</span> • <span>#Security</span>
+                    </div>
+                    <a href="https://github.com/harshavardhan1234-tech" target="_blank" class="btn-outline" style="padding: 10px 20px; text-decoration: none; border-radius: 20px; font-size: 0.9rem; display: inline-block; text-align: center;"><i class="fab fa-github"></i> View Source</a>
+                </div>
+            </div>
+
+            <div class="glass card project-card hidden delay-2">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AI Mock Interview Platform">
+                    <div class="project-img-overlay"></div>
+                </div>
+                <div class="project-content">
+                    <h3>AI Mock Interviews <span style="font-size:0.75rem; background: var(--accent); color: white; padding: 3px 10px; border-radius: 12px; vertical-align: middle; margin-left: 5px;">Upcoming</span></h3>
+                    <p>An intelligent platform designed to help students practice technical interviews using AI-generated questions and real-time feedback.</p>
+                    <div style="margin-top: 15px; margin-bottom: 20px; font-size: 0.9rem; color: var(--accent); font-weight: 500;">
+                        <span>#Python</span> • <span>#AI</span> • <span>#Web</span>
+                    </div>
+                    <a href="#" class="btn-outline" style="padding: 10px 20px; text-decoration: none; border-radius: 20px; font-size: 0.9rem; display: inline-block; text-align: center; opacity: 0.5; pointer-events: none;"><i class="fas fa-spinner"></i> In Progress</a>
+                </div>
+            </div>
+
+            <div class="glass card project-card hidden delay-3">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Student Attendance System">
+                    <div class="project-img-overlay"></div>
+                </div>
+                <div class="project-content">
+                    <h3>Student Attendance <span style="font-size:0.75rem; background: var(--accent); color: white; padding: 3px 10px; border-radius: 12px; vertical-align: middle; margin-left: 5px;">Upcoming</span></h3>
+                    <p>A digital solution for tracking student attendance efficiently, featuring dashboard analytics and automated reporting tools.</p>
+                    <div style="margin-top: 15px; margin-bottom: 20px; font-size: 0.9rem; color: var(--accent); font-weight: 500;">
+                        <span>#Java</span> • <span>#Database</span>
+                    </div>
+                    <a href="#" class="btn-outline" style="padding: 10px 20px; text-decoration: none; border-radius: 20px; font-size: 0.9rem; display: inline-block; text-align: center; opacity: 0.5; pointer-events: none;"><i class="fas fa-spinner"></i> In Progress</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements">
+        <h2>Achievements</h2>
+        <div class="glass card hidden floating" style="width: 100%; max-width: 850px; text-align: center; padding: 3rem;">
+            <i class="fas fa-trophy" style="font-size: 4rem; color: #f1c40f; margin-bottom: 25px; filter: drop-shadow(0 0 15px rgba(241,196,15,0.4));"></i>
+            <p style="font-size: 1.2rem;"><em>Continuously learning new technologies and browsing technical content to stay ahead of the curve. Specific certifications and contest achievements will be highlighted here soon!</em></p>
+        </div>
+    </section>
+
+    <!-- Resume Download Section -->
+    <section id="resume" style="min-height: auto; padding: 80px 20px;">
+        <div class="glass card hidden delay-1" style="text-align: center; width: 100%; max-width: 700px; margin: auto; padding: 3rem;">
+            <i class="far fa-file-alt" style="font-size: 3.5rem; color: var(--accent); margin-bottom: 20px;"></i>
+            <h2>Full Resume</h2>
+            <p style="margin-bottom: 25px;">Click below to view and download a comprehensive PDF document detailing my academic journey, skills, and project experience.</p>
+            <!-- UPDATED: Download button links to a live test PDF so it works instantly -->
+            <a href="./Kunduru_Harsha_Vardhan_Reddy_ATS_Resume.pdf" target="_blank" class="btn"><i class="fas fa-download"></i> View ATS Resume</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="grid">
+            <div class="glass card hidden delay-1" style="text-align: center; padding: 3rem 2rem;">
+                <div style="width: 80px; height: 80px; background: rgba(108, 92, 231, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                    <i class="fas fa-map-marker-alt" style="font-size: 2.5rem; color: var(--accent);"></i>
+                </div>
+                <h3>Location</h3>
+                <p>Anantapur, Andhra Pradesh</p>
+            </div>
+            
+            <div class="glass card hidden delay-2" style="text-align: center; padding: 3rem 2rem;">
+                <div style="width: 80px; height: 80px; background: rgba(108, 92, 231, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                    <i class="fas fa-phone-alt" style="font-size: 2.5rem; color: var(--accent);"></i>
+                </div>
+                <h3>Phone</h3>
+                <p>+91 7330753850</p>
+            </div>
+            
+            <div class="glass card hidden delay-3" style="text-align: center; padding: 3rem 2rem;">
+                <div style="width: 80px; height: 80px; background: rgba(108, 92, 231, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                    <i class="fas fa-envelope" style="font-size: 2.5rem; color: var(--accent);"></i>
+                </div>
+                <h3>Email</h3>
+                <p><a href="mailto:harsha7330753850@gmail.com" style="color: inherit; text-decoration: none; font-weight: 500; transition: color 0.3s;">harsha7330753850@gmail.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 30px; background: rgba(0,0,0,0.15); color: var(--text-primary); backdrop-filter: blur(10px);">
+        <p>&copy; 2026 Kunduru Harsha Vardhan Reddy. All Rights Reserved.</p>
+        <div class="social-icons" style="margin-top: 15px;">
+            <a href="https://github.com/harshavardhan1234-tech" target="_blank"><i class="fab fa-github" style="font-size: 1.2rem;"></i></a>
+            <a href="https://www.linkedin.com/in/k-harsha-9a445b2bb" target="_blank"><i class="fab fa-linkedin" style="font-size: 1.2rem;"></i></a>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Theme Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const icon = themeToggleBtn.querySelector('i');
+        
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.getAttribute('data-theme') === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        });
+
+        // Typing Effect
+        const phrases = ["Software Developer.", "Tech Enthusiast.", "Problem Solver.", "CSE Student."];
+        let i = 0; let j = 0; let isDeleting = false;
+        let textElement = document.getElementById("typing-text");
+
+        function typeLoop() {
+            textElement.innerHTML = phrases[i].substring(0, j) + '<span style="border-right: 3px solid var(--accent); padding-right: 4px; animation: blink 0.75s step-end infinite;"></span>';
+            
+            if (isDeleting) {
+                j--;
+                if (j === 0) {
+                    isDeleting = false;
+                    i = (i + 1) % phrases.length;
+                    setTimeout(typeLoop, 500); 
+                } else {
+                    setTimeout(typeLoop, 40); 
+                }
+            } else {
+                j++;
+                if (j === phrases[i].length) {
+                    isDeleting = true;
+                    setTimeout(typeLoop, 2500); 
+                } else {
+                    setTimeout(typeLoop, 100); 
+                }
+            }
+        }
+        
+        window.addEventListener('load', () => { setTimeout(typeLoop, 800); });
+
+        const style = document.createElement('style');
+        style.innerHTML = `@keyframes blink { 50% { border-color: transparent; } }`;
+        document.head.appendChild(style);
+
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+
+        // Navbar Background
+        const header = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
